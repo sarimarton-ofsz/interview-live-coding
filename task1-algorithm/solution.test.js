@@ -1,51 +1,60 @@
-const { TreeNode, maxDepth } = require('./solution');
+const { isAlmostPalindrome } = require('./solution');
 
-describe('maxDepth', () => {
-  test('Példa 1: Kiegyensúlyozott fa', () => {
-    const root = new TreeNode(3);
-    root.left = new TreeNode(9);
-    root.right = new TreeNode(20);
-    root.right.left = new TreeNode(15);
-    root.right.right = new TreeNode(7);
-    
-    expect(maxDepth(root)).toBe(3);
+describe('isAlmostPalindrome', () => {
+  test('Példa 1: Már palindrom, k=0', () => {
+    expect(isAlmostPalindrome('racecar', 0)).toBe(true);
   });
 
-  test('Példa 2: Csak jobb oldali fa', () => {
-    const root = new TreeNode(1);
-    root.right = new TreeNode(2);
-    
-    expect(maxDepth(root)).toBe(2);
+  test('Példa 2: Egy módosítással palindrom', () => {
+    expect(isAlmostPalindrome('abcdba', 1)).toBe(true);
   });
 
-  test('Példa 3: Üres fa', () => {
-    expect(maxDepth(null)).toBe(0);
+  test('Példa 3: Túl sok módosítás kellene', () => {
+    expect(isAlmostPalindrome('abcdef', 2)).toBe(false);
   });
 
-  test('Példa 4: Csak egy csomópont', () => {
-    const root = new TreeNode(0);
-    
-    expect(maxDepth(root)).toBe(1);
+  test('Példa 4: Rövid string egy módosítással', () => {
+    expect(isAlmostPalindrome('abc', 1)).toBe(true);
   });
 
-  test('Példa 5: Csak bal oldali fa', () => {
-    const root = new TreeNode(1);
-    root.left = new TreeNode(2);
-    root.left.left = new TreeNode(3);
-    root.left.left.left = new TreeNode(4);
-    
-    expect(maxDepth(root)).toBe(4);
+  test('Példa 5: Üres string', () => {
+    expect(isAlmostPalindrome('', 0)).toBe(true);
+    expect(isAlmostPalindrome('', 5)).toBe(true);
   });
 
-  test('Példa 6: Komplex fa', () => {
-    const root = new TreeNode(1);
-    root.left = new TreeNode(2);
-    root.right = new TreeNode(3);
-    root.left.left = new TreeNode(4);
-    root.left.right = new TreeNode(5);
-    root.right.right = new TreeNode(6);
-    root.left.left.left = new TreeNode(7);
-    
-    expect(maxDepth(root)).toBe(4);
+  test('Példa 6: Egy karakteres string', () => {
+    expect(isAlmostPalindrome('a', 0)).toBe(true);
+    expect(isAlmostPalindrome('a', 1)).toBe(true);
+  });
+
+  test('Példa 7: Két karakteres, azonos', () => {
+    expect(isAlmostPalindrome('aa', 0)).toBe(true);
+  });
+
+  test('Példa 8: Két karakteres, különböző', () => {
+    expect(isAlmostPalindrome('ab', 0)).toBe(false);
+    expect(isAlmostPalindrome('ab', 1)).toBe(true);
+  });
+
+  test('Példa 9: Hosszú palindrom', () => {
+    expect(isAlmostPalindrome('aabaa', 0)).toBe(true);
+  });
+
+  test('Példa 10: Majdnem palindrom hosszú string', () => {
+    expect(isAlmostPalindrome('aabxbaa', 1)).toBe(true);
+  });
+
+  test('Példa 11: Páratlan hosszú, középső elem különböző', () => {
+    expect(isAlmostPalindrome('abcba', 0)).toBe(true);
+    expect(isAlmostPalindrome('abxba', 0)).toBe(true);
+  });
+
+  test('Példa 12: K nagyobb mint szükséges', () => {
+    expect(isAlmostPalindrome('abcd', 10)).toBe(true);
+  });
+
+  test('Példa 13: Minden karakter különböző', () => {
+    expect(isAlmostPalindrome('abcdefg', 3)).toBe(true);
+    expect(isAlmostPalindrome('abcdefg', 2)).toBe(false);
   });
 });

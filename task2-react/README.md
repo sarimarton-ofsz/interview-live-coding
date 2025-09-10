@@ -55,13 +55,6 @@ Indítsd el a fejlesztői szervert:
 npm run dev:task2
 ```
 
-## Értékelési szempontok
-
-- Funkciók működése
-- React best practices alkalmazása
-- Kód struktúra és tisztaság
-- UI/UX megvalósítás
-
 ## Időkeret
 45 perc
 

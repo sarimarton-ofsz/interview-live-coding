@@ -1,115 +1,41 @@
-# Task 3: REST API és Frontend Integráció
+# Task 3: TypeScript Migration Debug Challenge
 
 ## Feladat leírása
 
-Készíts egy egyszerű alkalmazást, amely egy REST API-t és egy hozzá kapcsolódó frontend felületet tartalmaz. Az alkalmazás felhasználók kezelését valósítja meg.
+Van egy React alkalmazás ami tökéletesen működött JavaScript-ben. Valaki elkezdte TypeScript-re konvertálni, de most tele van cryptic hibákkal és nem indul el. A feladatod: debugold és javítsd ki!
 
-## Követelmények
+## A probléma
 
-### Backend (Node.js + Express):
+**Előzmény:** Egy tapasztalt JavaScript fejlesztő írt egy működő React alkalmazást. Aztán valaki "segíteni" akart és elkezdte TypeScript-re konvertálni. Most:
 
-1. **REST API végpontok:**
-   - `GET /api/users` - Összes felhasználó lekérdezése
-   - `GET /api/users/:id` - Egy felhasználó lekérdezése
-   - `POST /api/users` - Új felhasználó létrehozása
-   - `PUT /api/users/:id` - Felhasználó módosítása  
-   - `DELETE /api/users/:id` - Felhasználó törlése
+1. **A build nem megy át** - TypeScript hibák tömkelege
+2. **A hibaüzenetek félrevezetőek** - nem ott van a baj ahol a compiler mondja
+3. **Több rétegű probléma** - ha megjavítasz egyet, új hibák jönnek elő
+4. **Type inference csapdák** - a TypeScript rosszul következtet típusokra
 
-2. **Adatmodell:**
-   ```javascript
-   {
-     id: string,
-     name: string,
-     email: string,
-     role: 'admin' | 'user',
-     createdAt: Date
-   }
-   ```
+## Az alkalmazás (ami működött JS-ben)
 
-3. **Validáció:**
-   - Email formátum ellenőrzése
-   - Kötelező mezők ellenőrzése
-   - Hibakezelés
+Egy egyszerű Dashboard komponens rendszer:
+- **DataProvider**: Context API-val ad adatokat
+- **Dashboard**: Főkomponens ami widgeteket renderel
+- **Widget**: Generic komponens különböző típusú widgetekhez
+- **useDataSource**: Custom hook adatlekéréshez
 
-### Frontend (React):
+## Milyen hibákat fogsz találni?
 
-1. **Funkciók:**
-   - Felhasználók listázása táblázatban
-   - Új felhasználó hozzáadása form-mal
-   - Felhasználó szerkesztése
-   - Felhasználó törlése
-   - Keresés név vagy email alapján
-
-2. **UI elemek:**
-   - Táblázat a felhasználóknak
-   - Modal/form új felhasználó hozzáadásához
-   - Szerkesztés és törlés gombok
-   - Keresőmező
-
-## Technológiák
-
-- Backend: Node.js, Express
-- Frontend: React, Vite
-- Adattárolás: In-memory (array) vagy JSON fájl
-- HTTP kérések: fetch vagy axios
-
-## Példa API válaszok
-
-### GET /api/users
-```json
-{
-  "success": true,
-  "data": [
-    {
-      "id": "1",
-      "name": "Kiss János",
-      "email": "janos@example.com",
-      "role": "admin",
-      "createdAt": "2024-01-15T10:30:00Z"
-    }
-  ]
-}
-```
-
-### POST /api/users
-```json
-{
-  "name": "Nagy Péter",
-  "email": "peter@example.com",
-  "role": "user"
-}
-```
+1. **Generic type inference probléma** discriminated union-nal
+2. **React.FC vs normál function component** typing konfliktus  
+3. **Conditional types** edge case
+4. **tsconfig.json** beállítások okozta rejtett hibák
+5. **Type assertion** ami elfed egy mélyebb problémát
 
 ## Indítás
 
-Backend:
-```bash
-cd task3-ai-allowed/backend
-npm install
-npm run dev
-```
-
-Frontend:
 ```bash
 cd task3-ai-allowed/frontend
 npm install
-npm run dev
+npm run type-check  # Ez fog rengeteg hibát dobni
 ```
-
-## Tippek
-
-- Használd a `claude` parancsot a terminalban segítségért
-- CORS beállítása szükséges lehet a backend-en
-- Környezeti változók használata ajánlott (PORT, API_URL)
-- Error boundary implementálása a frontend-en hasznos lehet
-
-## Értékelési szempontok
-
-- API végpontok megfelelő működése
-- Frontend-backend kommunikáció
-- Hibakezelés
-- Kód struktúra és tisztaság
-- UI/UX megvalósítás
 
 ## Időkeret
 45 perc

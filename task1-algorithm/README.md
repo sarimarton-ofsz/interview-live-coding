@@ -1,53 +1,47 @@
-# Task 1: Bináris Fa Mélység Számítás
+# Task 1: Almost Palindrome Checker
 
 ## Feladat leírása
 
-Implementálj egy függvényt, amely kiszámítja egy bináris fa maximális mélységét!
+Implementálj egy függvényt, amely eldönti, hogy egy string palindrommá tehető-e maximum K karakter módosításával!
 
 ## Követelmények
 
-1. Implementáld a `maxDepth` függvényt a `solution.js` fájlban
-2. A függvény egy bináris fa gyökér csomópontját kapja paraméterként
-3. Térj vissza a fa maximális mélységével (a gyökértől a legtávolabbi levélig vezető út hossza)
-
-## Csomópont struktúra
-
-```javascript
-class TreeNode {
-  constructor(val, left = null, right = null) {
-    this.val = val;
-    this.left = left;
-    this.right = right;
-  }
-}
-```
+1. Implementáld az `isAlmostPalindrome(s, k)` függvényt a `solution.js` fájlban
+2. A függvény két paramétert kap:
+   - `s`: a vizsgálandó string
+   - `k`: maximum hány karakter módosítható
+3. Térj vissza `true`-val ha palindrommá tehető K vagy kevesebb módosítással, egyébként `false`
 
 ## Példák
 
 ### Példa 1:
-```
-Input: [3,9,20,null,null,15,7]
-      3
-     / \
-    9  20
-      /  \
-     15   7
-Output: 3
+```javascript
+isAlmostPalindrome("racecar", 0)
+// Output: true (már palindrom)
 ```
 
 ### Példa 2:
-```
-Input: [1,null,2]
-    1
-     \
-      2
-Output: 2
+```javascript
+isAlmostPalindrome("abcdba", 1)  
+// Output: true (középső 'd' → 'b' és palindrom lesz: "abcbba")
 ```
 
 ### Példa 3:
+```javascript
+isAlmostPalindrome("abcdef", 2)
+// Output: false (minimum 3 módosítás kellene)
 ```
-Input: []
-Output: 0
+
+### Példa 4:
+```javascript
+isAlmostPalindrome("abc", 1)
+// Output: true ('c' → 'a' és "aba" palindrom)
+```
+
+### Példa 5:
+```javascript
+isAlmostPalindrome("", 0)
+// Output: true (üres string palindrom)
 ```
 
 ## Tesztelés

@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "description": "Interview Assessment Project with 3 Tasks",
   "scripts": {
-    "install:all": "npm install && cd task2-react && npm install && cd ../task3-ai-allowed/backend && npm install && cd ../frontend && npm install",
+    "install:all": "npm install && cd task2-react && npm install && cd ../task3-ai-allowed/frontend && npm install",
     "test:task1": "cd task1-algorithm && npm test",
     "dev:task2": "cd task2-react && npm run dev",
-    "dev:task3": "concurrently \"npm run dev:task3-backend\" \"npm run dev:task3-frontend\"",
-    "dev:task3-backend": "cd task3-ai-allowed/backend && npm run dev",
-    "dev:task3-frontend": "cd task3-ai-allowed/frontend && npm run dev",
+    "dev:task3": "cd task3-ai-allowed/frontend && npm run dev",
+    "type-check:task3": "cd task3-ai-allowed/frontend && npm run type-check",
     "check-setup": "node check-setup.js"
   },
   "devDependencies": {

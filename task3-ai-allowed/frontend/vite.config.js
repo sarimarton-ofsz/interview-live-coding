@@ -6,5 +6,8 @@ export default defineConfig({
   server: {
     port: 3003,
     open: true
+  },
+  resolve: {
+    extensions: ['.tsx', '.ts', '.jsx', '.js']
   }
 });

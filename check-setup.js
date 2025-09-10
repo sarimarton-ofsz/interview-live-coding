@@ -10,8 +10,8 @@ const checks = [
   { path: 'task2-react', name: 'Task 2 - React' },
   { path: 'task2-react/src/App.jsx', name: 'Task 2 App Component' },
   { path: 'task3-ai-allowed', name: 'Task 3 - AI Allowed' },
-  { path: 'task3-ai-allowed/backend/server.js', name: 'Task 3 Backend' },
-  { path: 'task3-ai-allowed/frontend/src/App.jsx', name: 'Task 3 Frontend' },
+  { path: 'task3-ai-allowed/frontend/src/App.tsx', name: 'Task 3 TypeScript App' },
+  { path: 'task3-ai-allowed/frontend/tsconfig.json', name: 'Task 3 TypeScript Config' },
 ];
 
 let allGood = true;
@@ -31,11 +31,11 @@ console.log('\n' + '='.repeat(50));
 if (allGood) {
   console.log('✨ Minden rendben! A projekt készen áll.');
   console.log('\nKövetkező lépések:');
-  console.log('1. Futtassa: npm install:all');
-  console.log('2. Kezdje el a feladatokat!');
+  console.log('1. Futtasd: npm run install:all');
+  console.log('2. Kezdd el a feladatokat!');
 } else {
   console.log('⚠️  Néhány fájl vagy mappa hiányzik.');
-  console.log('Kérjük, ellenőrizze a projekt struktúrát.');
+  console.log('Kérjük, ellenőrizd a projekt struktúrát.');
 }
 
 console.log('='.repeat(50));
